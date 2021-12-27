@@ -1,5 +1,6 @@
 {
   "name": "name-shuffle",
+  "homepage": "https://sheepkill15.github.io/name-shuffle",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
