@@ -14,12 +14,13 @@ import { NameListItem } from './NameListItem';
 import { useFocus, useNames, validateNewName } from './utils';
 
 export const NameSuffle: FC = () => {
-  const { names, shuffledNames, clearNames, addNewName, shuffleNames } =
+  const { names, shuffledNames, clearNames, addNewName, shuffleNames, editName } =
     useNames();
   const [newName, setNewName] = useState('');
   const [inputRef, setInputFocus] = useFocus<ITextField>();
 
   return (
+    <>
     <Host>
       <NewNameWrapper>
         <TextField
@@ -60,7 +61,7 @@ export const NameSuffle: FC = () => {
               <List
                 items={names}
                 onRenderCell={(item, index) => (
-                  <NameListItem name={item} index={index} />
+                  <NameListItem name={item} index={index} onEdit={editName} />
                 )}
               />
             </>
@@ -79,6 +80,7 @@ export const NameSuffle: FC = () => {
         </div>
       </NamesList>
     </Host>
+    </>
   );
 
   function addName() {
