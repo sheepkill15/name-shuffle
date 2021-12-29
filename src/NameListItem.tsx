@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { EditNameDialog } from './EditNameDialog';
 
 export const NameListItem: FC<{
@@ -15,7 +15,10 @@ export const NameListItem: FC<{
 
   return (
     <>
-      <Host onClick={onEdit != null ? () => setIsEditing(true) : () => null}>
+      <Host
+        showPointerOnHover={onEdit != null}
+        onClick={onEdit != null ? () => setIsEditing(true) : () => null}
+      >
         {index == null ? (
           <>{name}</>
         ) : (
@@ -40,11 +43,15 @@ export const NameListItem: FC<{
   );
 };
 
-const Host = styled.div`
+const Host = styled.div<{ showPointerOnHover?: boolean }>`
   &:hover {
     outline-style: solid;
     outline-color: rgb(16, 110, 190);
     outline-width: 1px;
-    cursor: pointer;
+    ${(p) =>
+      p.showPointerOnHover &&
+      css`
+        cursor: pointer;
+      `}
   }
 `;
